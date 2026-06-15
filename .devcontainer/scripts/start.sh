@@ -252,6 +252,11 @@ fi
   cp -r "$(pwd)/claude-code-magento-agents/" ~/.claude/agents
   rm -rf ./claude-code-magento-agents
 
+  echo "Installing Hyvä AI skills for Claude Code..."
+  ( cd "${CODESPACES_REPO_ROOT}" && \
+    curl -fsSL https://raw.githubusercontent.com/hyva-themes/hyva-ai-tools/refs/heads/main/install.sh | sh -s claude ) \
+    || echo "WARNING: Hyvä AI skills install failed - skills will be unavailable in Claude."
+
   # Add mage alias for bin/magento
   echo "alias mage='bin/magento'" >> ~/.bashrc
 
